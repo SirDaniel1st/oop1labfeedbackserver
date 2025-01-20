@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Lab1Part1Tests
+comment1.params=
+comment1.target=int\ testHelloWorldClass()
+comment1.text=\r\n\ Tests\ whether\ the\ HelloWorld\ class\ exists\ and\ verifies\ the\ main\ method's\r\n\ existence\ and\ signature.\r\n\ @return\ The\ accumulated\ score\ for\ this\ test.\r\n
+comment2.params=
+comment2.target=int\ testHelloWorldOutput()
+comment2.text=\r\n\ Tests\ the\ output\ of\ the\ HelloWorld\ main\ method\ by\ simulating\ input\ and\ capturing\ output.\r\n\ @return\ The\ accumulated\ score\ for\ this\ test.\r\n
+comment3.params=input
+comment3.target=java.lang.String\ normalizeString(java.lang.String)
+comment3.text=\r\n\ Normalizes\ a\ string\ by\ trimming,\ collapsing\ multiple\ spaces,\ and\ unifying\ newline\ characters.\r\n\ @param\ input\ The\ raw\ string\ to\ normalize.\r\n\ @return\ A\ normalized\ version\ of\ the\ string.\r\n
+comment4.params=
+comment4.target=java.lang.String\ getFeedback()
+comment4.text=\r\n\ Retrieves\ the\ comprehensive\ feedback\ from\ all\ tests.\r\n\ @return\ A\ string\ containing\ all\ feedback\ messages.\r\n
+numComments=5

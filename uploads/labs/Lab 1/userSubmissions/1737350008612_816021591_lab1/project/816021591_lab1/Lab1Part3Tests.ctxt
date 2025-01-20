@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Lab1Part3Tests
+comment1.params=
+comment1.target=int\ testLab1PartThreeClass()
+comment1.text=\r\n\ Tests\ whether\ the\ Lab1PartThree\ class\ and\ its\ required\ methods\ exist.\r\n\ @return\ The\ accumulated\ score\ for\ this\ test.\r\n
+comment2.params=
+comment2.target=int\ testExercise1()
+comment3.params=
+comment3.target=int\ testExercise2()
+comment3.text=\r\n\ Tests\ Exercise\ 2\ -\ Printing\ even\ numbers\ from\ 1\ to\ n.\r\n
+comment4.params=
+comment4.target=int\ testExercise3()
+comment4.text=\r\n\ Tests\ Exercise\ 3\ -\ Random\ multiplication\ question.\r\n
+comment5.params=
+comment5.target=int\ testExercise4()
+comment5.text=\r\n\ Tests\ Exercise\ 4\ -\ Simulated\ Chat\ Program.\r\n
+comment6.params=
+comment6.target=java.lang.String\ getFeedback()
+comment6.text=\r\n\ Retrieves\ all\ accumulated\ feedback.\r\n\ @return\ A\ string\ containing\ feedback\ messages\ for\ all\ tests.\r\n
+numComments=7

@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=Lab1Part2Tests
+comment1.params=
+comment1.target=int\ testLab1PartTwoClass()
+comment1.text=\r\n\ Tests\ whether\ the\ Lab1PartTwo\ class\ exists.\r\n\ @return\ The\ accumulated\ score\ for\ this\ test.\r\n
+comment2.params=methodName\ expectedOutput\ caseSensitive\ simulatedInput\ maxScore\ isFlexible
+comment2.target=void\ testExercise(java.lang.String,\ java.lang.String,\ boolean,\ java.lang.String,\ int,\ boolean)
+comment2.text=\r\n\ Generic\ test\ method\ to\ validate\ exercises.\r\n\ @param\ methodName\ Name\ of\ the\ method\ to\ test.\r\n\ @param\ expectedOutput\ Expected\ output\ of\ the\ method.\r\n\ @param\ caseSensitive\ Whether\ the\ comparison\ should\ be\ case-sensitive.\r\n\ @param\ simulatedInput\ Simulated\ user\ input\ for\ System.in\ (if\ applicable).\r\n\ @param\ maxScore\ The\ score\ to\ add\ for\ passing\ the\ test.\r\n\ @param\ isFlexible\ Whether\ to\ allow\ minor\ variations\ in\ output\ like\ extra\ spaces\ or\ newlines.\r\n
+comment3.params=
+comment3.target=int\ testExercise1()
+comment4.params=
+comment4.target=int\ testExercise2()
+comment5.params=
+comment5.target=int\ testExercise3()
+comment6.params=
+comment6.target=int\ testExercise4()
+comment7.params=
+comment7.target=int\ testExercise5()
+comment8.params=
+comment8.target=int\ testExercise6()
+comment9.params=
+comment9.target=java.lang.String\ getFeedback()
+comment9.text=\r\n\ Retrieves\ the\ comprehensive\ feedback\ from\ all\ tests.\r\n\ @return\ A\ string\ containing\ all\ feedback\ messages.\r\n
+numComments=10
