@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=FuelStationTests
+comment1.params=
+comment1.target=int\ runTests()
+comment2.params=
+comment2.target=int\ testDefaultConstructor()
+comment3.params=
+comment3.target=int\ testToStringMethod()
+comment4.params=
+comment4.target=int\ testSellFuelPrivateMethod()
+comment5.params=
+comment5.target=int\ testCanDispenseFuelType()
+comment6.params=
+comment6.target=int\ testDispenseMethod()
+comment7.params=
+comment7.target=java.lang.String\ getFeedback()
+numComments=8

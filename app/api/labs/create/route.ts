@@ -7,14 +7,6 @@ import { auth } from '@clerk/nextjs';
 
 export async function POST(request: Request) {
   try {
-    // Check if user is authenticated and is admin
-    const { userId, sessionClaims } = auth();
-    if (!userId || !sessionClaims?.admin) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
 
     const formData = await request.formData();
     const labName = formData.get('labName') as string;

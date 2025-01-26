@@ -1,25 +1,27 @@
 import { authMiddleware } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export default authMiddleware({
-  publicRoutes: ["/"],
+  publicRoutes: ["/"], // Make the home page public
   afterAuth(auth, req) {
     const url = new URL(req.url);
 
-    // Fetch the admin user ID from environment variables
+    // Fetch admin user ID from environment variables
     const ADMIN_USER_ID = process.env.NEXT_PUBLIC_ADMIN_USER_ID;
 
-    // Handle admin access
-    if (url.pathname.startsWith('/admin')) {
-      const userId = auth.userId; // Get the current user's ID
+    // Admin route protection
+    if (url.pathname.startsWith("/admin")) {
+      const userId = auth.userId;
+
+      // Check if the user is an admin
       if (userId !== ADMIN_USER_ID) {
-        console.log(`Access denied to /admin: User ${userId} is not an admin`);
-        const homeUrl = new URL('/', req.url);
-        return Response.redirect(homeUrl);
+        console.log(`Access denied: User ${userId} is not an admin`);
+        return NextResponse.redirect(new URL("/", req.url));
       }
     }
   },
 });
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };

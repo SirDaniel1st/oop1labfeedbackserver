@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=FeedbackGenerator
+comment1.params=
+comment1.target=FeedbackGenerator()
+comment2.params=studentFolder\ labNum\ feedback\ totalScore
+comment2.target=void\ generateFeedback(java.lang.String,\ int,\ java.lang.String,\ int)
+comment3.params=imagePath\ text
+comment3.target=com.itextpdf.text.Paragraph\ createParagraphWithEmoji(java.lang.String,\ java.lang.String)
+comment4.params=writer\ document
+comment4.target=void\ onEndPage(com.itextpdf.text.pdf.PdfWriter,\ com.itextpdf.text.Document)
+numComments=5

@@ -15,13 +15,7 @@ export async function POST(
 ) {
   try {
     // Check authentication
-    const { userId } = auth();
-    if (!userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
-    }
+  
     
     const formData = await request.formData();
     const projectZip = formData.get('projectZip') as File;
@@ -99,7 +93,7 @@ export async function POST(
 
       // Run the test runner
       const { stdout, stderr } = await execAsync(
-        `java -cp "${itextJarPath}:." Lab1TestsRunner`,
+        `java -cp "${itextJarPath}:." LabTestsRunner`,
         { cwd: projectFilesDir }
       );
       console.log('Test runner output:', stdout);

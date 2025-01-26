@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=VehicleTests
+comment1.params=
+comment1.target=int\ runTests()
+comment2.params=
+comment2.target=int\ testVehicleClass()
+comment3.params=
+comment3.target=int\ testConstructor()
+comment4.params=
+comment4.target=int\ testToString()
+comment5.params=
+comment5.target=java.lang.String\ getFeedback()
+numComments=6
