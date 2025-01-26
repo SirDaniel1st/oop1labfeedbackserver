@@ -40,7 +40,6 @@ export function CreateLabForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       labName: '',
-      testFiles: null,
     },
   });
 
