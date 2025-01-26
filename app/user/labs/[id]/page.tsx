@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
@@ -27,7 +27,7 @@ import { Upload, Download } from 'lucide-react';
 // Define validation schema
 const formSchema = z.object({
   projectZip: z
-    .custom<FileList>()
+    .instanceof(FileList, { message: 'File is required' })
     .refine((files) => files?.length === 1, 'Please select exactly one ZIP file')
     .refine(
       (files) =>
@@ -40,20 +40,22 @@ const formSchema = z.object({
     ),
 });
 
+type FormSchema = z.infer<typeof formSchema>;
+
 export default function LabPage({ params }: { params: { id: string } }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      projectZip: null,
-    },
-  });
+const form = useForm<FormSchema>({
+  resolver: zodResolver(formSchema),
+  defaultValues: {
+    projectZip: undefined, // Use undefined instead of null
+  },
+});
 
-  async function onSubmit(data: { projectZip: FileList }) {
+  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     if (!data.projectZip?.[0]) return;
 
     try {
@@ -86,7 +88,7 @@ export default function LabPage({ params }: { params: { id: string } }) {
     } finally {
       setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -112,9 +114,8 @@ export default function LabPage({ params }: { params: { id: string } }) {
                         accept=".zip"
                         onChange={(e) => {
                           const files = e.target.files;
-                          if (files?.length) {
-                            form.setValue('projectZip', files);
-                          }
+                          // Set FileList
+                          form.trigger('projectZip'); // Validate on file change
                         }}
                       />
                     </FormControl>
