@@ -42,7 +42,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -77,6 +77,36 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground leading-relaxed antialiased p-6;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold mb-4;
+  }
+  h1 {
+    @apply text-4xl lg:text-5xl mb-6;
+  }
+  h2 {
+    @apply text-3xl lg:text-4xl mb-5;
+  }
+  h3 {
+    @apply text-2xl lg:text-3xl mb-4;
+  }
+  p {
+    @apply mb-4 text-lg leading-loose;
+  }
+  a {
+    @apply text-primary underline hover:no-underline;
+  }
+  button {
+    @apply px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-opacity-90;
+  }
+  .container {
+    @apply mx-auto max-w-screen-lg px-4 md:px-8;
+  }
+  .card {
+    @apply p-6 rounded-lg shadow-md bg-card text-card-foreground;
   }
 }

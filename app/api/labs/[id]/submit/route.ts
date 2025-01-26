@@ -99,7 +99,7 @@ export async function POST(
 
       // Run the test runner
       const { stdout, stderr } = await execAsync(
-        `java -cp "${itextJarPath};." Lab1TestsRunner`,
+        `java -cp "${itextJarPath}:." Lab1TestsRunner`,
         { cwd: projectFilesDir }
       );
       console.log('Test runner output:', stdout);

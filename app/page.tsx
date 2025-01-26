@@ -14,25 +14,13 @@ export default function Home() {
       </header>
       <main className="container py-6">
         <div className="flex flex-col gap-4">
-          <h1 className="text-3xl font-bold">Welcome to the Dashboard</h1>
+          <h1 className="text-3xl font-bold">Welcome to the OOP1 Lab Feedback Dashboard</h1>
           <div className="grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <Shield className="h-8 w-8 mb-2" />
-                <CardTitle>Admin Portal</CardTitle>
-                <CardDescription>Access administrative controls and management tools</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button asChild className="w-full">
-                  <Link href="/admin">Access Admin Portal</Link>
-                </Button>
-              </CardContent>
-            </Card>
             <Card>
               <CardHeader>
                 <Users className="h-8 w-8 mb-2" />
                 <CardTitle>User Dashboard</CardTitle>
-                <CardDescription>View and manage your user account</CardDescription>
+                <CardDescription>View and manage your OOP1 Labs</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild className="w-full">
