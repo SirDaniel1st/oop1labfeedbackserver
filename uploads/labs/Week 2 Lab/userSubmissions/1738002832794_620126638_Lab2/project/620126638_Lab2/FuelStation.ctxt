@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=FuelStation
+comment1.params=
+comment1.target=java.lang.String\ getFuelType()
+comment2.params=
+comment2.target=double\ getFuelVolume()
+comment3.params=
+comment3.target=double\ getFuelRate()
+comment4.params=
+comment4.target=double\ getFuelSales()
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment6.params=volume
+comment6.target=boolean\ sellFuel(double)
+comment7.params=fuelType
+comment7.target=boolean\ canDispenseFuelType(java.lang.String)
+comment8.params=fuelType\ volume
+comment8.target=boolean\ dispense(java.lang.String,\ double)
+numComments=9

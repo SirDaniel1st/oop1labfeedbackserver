@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Vehicle
+comment1.params=length\ width\ breadth
+comment1.target=Vehicle(int,\ int,\ int)
+comment2.params=
+comment2.target=int\ getTankCapacity()
+comment3.params=
+comment3.target=java.lang.String\ getFuelType()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5

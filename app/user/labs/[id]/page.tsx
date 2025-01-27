@@ -1,103 +1,84 @@
-'use client';
+"use client"
 
-import { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { toast } from 'sonner';
-import { Upload, Download } from 'lucide-react';
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
+import { Button } from "@/components/ui/button"
+import { FileUpload } from "./FileUpload"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { toast } from "sonner"
+import { Upload, Download } from "lucide-react"
 
 // Define validation schema
 const formSchema = z.object({
   projectZip: z
-    .instanceof(FileList, { message: 'File is required' })
-    .refine((files) => files?.length === 1, 'Please select exactly one ZIP file')
+    .instanceof(FileList)
+    .refine((files) => files.length === 1, "Please select exactly one ZIP file")
     .refine(
-      (files) =>
-        files?.[0]?.type === 'application/zip' || files?.[0]?.name.endsWith('.zip'),
-      'File must be a ZIP archive'
+      (files) => files[0].type === "application/zip" || files[0].name.endsWith(".zip"),
+      "File must be a ZIP archive",
     )
-    .refine(
-      (files) => files?.[0]?.size <= 5 * 1024 * 1024,
-      'File size must not exceed 5 MB'
-    ),
-});
+    .refine((files) => files[0].size <= 5 * 1024 * 1024, "File size must not exceed 5 MB"),
+})
 
-type FormSchema = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof formSchema>
 
 export default function LabPage({ params }: { params: { id: string } }) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [feedback, setFeedback] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null)
 
-const form = useForm<FormSchema>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    projectZip: undefined, // Use undefined instead of null
-  },
-});
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      projectZip: undefined,
+    },
+  })
 
-  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
-    if (!data.projectZip?.[0]) return;
+  async function onSubmit(data: FormValues) {
+    if (!data.projectZip?.[0]) return
 
     try {
-      setIsSubmitting(true);
-      setError(null);
-      setFeedback(null);
-      setPdfUrl(null);
+      setIsSubmitting(true)
+      setError(null)
+      setFeedback(null)
+      setPdfUrl(null)
 
-      const formData = new FormData();
-      formData.append('projectZip', data.projectZip[0]);
+      const formData = new FormData()
+      formData.append("projectZip", data.projectZip[0])
 
       const response = await fetch(`/api/labs/${params.id}/submit`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
-      });
+      })
 
-      const result = await response.json();
+      const result = await response.json()
 
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to submit project');
+        throw new Error(result.error || "Failed to submit project")
       }
 
-      setFeedback(result.feedback);
-      setPdfUrl(result.pdfUrl);
-      toast.success('Project submitted successfully');
-      form.reset();
+      setFeedback(result.feedback)
+      setPdfUrl(result.pdfUrl)
+      toast.success("Project submitted successfully")
+      form.reset()
     } catch (err: any) {
-      setError(err.message || 'Failed to submit project');
-      toast.error(err.message || 'Failed to submit project');
+      setError(err.message || "Failed to submit project")
+      toast.error(err.message || "Failed to submit project")
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
     <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Submit Project</CardTitle>
-          <CardDescription>
-            Upload your project zip file to get feedback.
-          </CardDescription>
+          <CardDescription>Upload your project zip file to get feedback.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -109,15 +90,7 @@ const form = useForm<FormSchema>({
                   <FormItem>
                     <FormLabel>Project ZIP</FormLabel>
                     <FormControl>
-                      <Input
-                        type="file"
-                        accept=".zip"
-                        onChange={(e) => {
-                          const files = e.target.files;
-                          // Set FileList
-                          form.trigger('projectZip'); // Validate on file change
-                        }}
-                      />
+                      <FileUpload accept=".zip" onChange={(files) => field.onChange(files)} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -126,7 +99,7 @@ const form = useForm<FormSchema>({
 
               <Button type="submit" disabled={isSubmitting}>
                 <Upload className="mr-2 h-4 w-4" />
-                {isSubmitting ? 'Submitting...' : 'Get Feedback'}
+                {isSubmitting ? "Submitting..." : "Get Feedback"}
               </Button>
             </form>
           </Form>
@@ -139,9 +112,7 @@ const form = useForm<FormSchema>({
             <CardTitle>Error</CardTitle>
           </CardHeader>
           <CardContent>
-            <pre className="bg-muted p-4 rounded-lg whitespace-pre-wrap text-sm">
-              {error}
-            </pre>
+            <pre className="bg-muted p-4 rounded-lg whitespace-pre-wrap text-sm">{error}</pre>
           </CardContent>
         </Card>
       )}
@@ -152,21 +123,11 @@ const form = useForm<FormSchema>({
             <CardTitle>Feedback</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <pre className="bg-muted p-4 rounded-lg whitespace-pre-wrap text-sm">
-              {feedback}
-            </pre>
+            <pre className="bg-muted p-4 rounded-lg whitespace-pre-wrap text-sm">{feedback}</pre>
             {pdfUrl && (
               <div className="space-y-4">
-                <iframe
-                  src={pdfUrl}
-                  className="w-full h-[600px] rounded-lg border"
-                  title="Feedback PDF"
-                />
-                <Button
-                  variant="outline"
-                  onClick={() => window.open(pdfUrl)}
-                  className="w-full"
-                >
+                <iframe src={pdfUrl} className="w-full h-[600px] rounded-lg border" title="Feedback PDF" />
+                <Button variant="outline" onClick={() => window.open(pdfUrl)} className="w-full">
                   <Download className="mr-2 h-4 w-4" />
                   Open PDF in New Tab
                 </Button>
@@ -176,5 +137,6 @@ const form = useForm<FormSchema>({
         </Card>
       )}
     </div>
-  );
+  )
 }
+
